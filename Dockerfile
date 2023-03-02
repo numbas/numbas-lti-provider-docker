@@ -1,4 +1,4 @@
-FROM python:3.9.10-slim-buster
+FROM python:3.9.15-slim-buster
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y --no-install-recommends apt-utils
@@ -11,7 +11,7 @@ RUN chown -R numbas_lti:numbas_lti /srv/numbas-lti-media
 RUN chown -R www-data:www-data /srv/numbas-lti-static
 RUN chmod -R 777 /srv/numbas-lti-media /srv/numbas-lti-static
 
-ARG VERSION=v3.1
+ARG VERSION=v3.2
 RUN git clone --depth 1 --branch ${VERSION} https://github.com/numbas/numbas-lti-provider.git /opt/numbas-lti-provider
 WORKDIR "/opt/numbas-lti-provider"
 RUN chown -R numbas_lti:numbas_lti /opt/numbas-lti-provider

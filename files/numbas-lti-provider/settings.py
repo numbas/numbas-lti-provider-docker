@@ -17,6 +17,7 @@ env = environ.Env(
     SUPPORT_URL = (str, None),
     EMAIL_COMPLETION_RECEIPTS = (bool, False),
     DEFAULT_FROM_EMAIL = (str,None),
+    NUMBAS_LOCKDOWN_APP_PASSWORD = (str, ''),
 )
 
 # Show debug information when there are errors?
@@ -224,3 +225,18 @@ REQUEST_TIMEOUT = 60
 # The number of days after creation to keep report files before deleting them.
 REPORT_FILE_EXPIRY_DAYS = 30
 
+# Settings for the lockdown app
+LOCKDOWN_APP = {
+    # Password that users must enter to decrypt launch info
+    'password': env('NUMBAS_LOCKDOWN_APP_PASSWORD'),
+
+    # Salt for encrypted links to launch the lockdown app.
+    # This is built into the lockdown app, so shouldn't change unless you have your own version.
+    'salt': '45ab2cf2e139c01f8447d17dc653d585',
+
+    # The URL to download the app from.
+    'install_url': 'https://www.numbas.org.uk/lockdown-app',
+
+    # The URL to download the Safe Exam Browser app from.
+    'seb_install_url': 'https://safeexambrowser.org/download_en.html',
+}
