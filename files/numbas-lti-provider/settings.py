@@ -219,6 +219,12 @@ EMAIL_COMPLETION_RECEIPTS = env('EMAIL_COMPLETION_RECEIPTS')
 # The email address to send emails from.
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
+# Connection details for sending email through SMTP
+EMAIL_CONFIG = env.email_url('EMAIL_URL', default = None)
+
+if EMAIL_CONFIG is not None:
+    vars().update(EMAIL_CONFIG)
+
 # The number of seconds to wait for requests to timeout, such as outcome reports or fetching SCORM packages.
 REQUEST_TIMEOUT = 60
 
