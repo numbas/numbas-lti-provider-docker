@@ -220,7 +220,7 @@ EMAIL_COMPLETION_RECEIPTS = env('EMAIL_COMPLETION_RECEIPTS')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
 # Connection details for sending email through SMTP
-EMAIL_CONFIG = env.email_url('EMAIL_URL', default = None)
+EMAIL_CONFIG = env.email_url('EMAIL_URL', default = 'smtp://localhost')
 
 if EMAIL_CONFIG is not None:
     vars().update(EMAIL_CONFIG)
