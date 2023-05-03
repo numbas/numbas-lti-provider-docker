@@ -11,12 +11,14 @@ services:
       - './files/nginx/templates:/etc/nginx/templates'
       - './files/ssl:/etc/ssl/numbas'
       - numbas:/srv
+    restart: always 
   redis:
     expose:
       - "6379"
     image: redis
     volumes:
       - redis:/data
+    restart: always 
   postgres:
     env_file:
       - 'settings.env'
@@ -29,6 +31,7 @@ services:
     image: postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
+    restart: always 
   numbas-setup:
     env_file:
       - 'settings.env'
