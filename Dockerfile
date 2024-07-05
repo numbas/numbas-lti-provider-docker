@@ -1,7 +1,7 @@
 FROM python:3.12.4-slim-bookworm
 
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update -y && apt-get upgrade -y && apt-get install -y --no-install-recommends apt-utils
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update -y && apt-get upgrade -y
 RUN apt-get update -y && apt-get install -y git build-essential postgresql-server-dev-all
 
 RUN useradd -ms /bin/bash numbas_lti && usermod -a -G numbas_lti www-data
