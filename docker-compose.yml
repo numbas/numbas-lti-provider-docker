@@ -33,7 +33,7 @@ services:
   numbas-setup:
     env_file:
       - 'settings.env'
-    image: numbas-lti-docker
+    image: numbas/numbas-lti-provider
     depends_on:
       - postgres
       - redis
@@ -44,7 +44,7 @@ services:
   daphne:
     env_file:
       - 'settings.env'
-    image: numbas-lti-docker
+    image: numbas/numbas-lti-provider
     command: /usr/local/bin/daphne numbasltiprovider.asgi:application --port 8700 --bind 0.0.0.0 -v 2
     depends_on:
       - postgres
@@ -59,7 +59,7 @@ services:
   huey:
     env_file:
       - 'settings.env'
-    image: numbas-lti-docker
+    image: numbas/numbas-lti-provider
     command: /usr/local/bin/python /opt/numbas-lti-provider/manage.py run_huey
     depends_on:
       - postgres

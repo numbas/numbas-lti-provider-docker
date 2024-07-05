@@ -20,7 +20,7 @@ We have tested with Docker version 24.
 Build the docker image:
 
 ```
-docker build . -t numbas-lti-docker
+docker build . -t numbas/numbas-lti-provider
 ```
 
 Copy the file `settings.env.dist` to `settings.env` and write your own values each of the variables inside.
@@ -76,7 +76,7 @@ To upgrade to a new version, follow these steps after fetching the latest versio
 Remake the container image:
 
 ```
-docker build . --no-cache -t numbas-lti-docker
+docker build . --no-cache -t numbas/numbas-lti-provider
 ```
 
 Then run the installation script again:
