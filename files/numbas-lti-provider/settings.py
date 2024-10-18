@@ -194,6 +194,15 @@ DATABASES = {
     }
 }
 
+# Cache details.
+# See https://docs.djangoproject.com/en/4.2/topics/cache/
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        "LOCATION": os.environ.get('REDIS_URL','redis://redis:6379'),
+    }
+}
+
 # Channels communication layers.
 # This is normally set by the setup script.
 # See https://channels.readthedocs.io/en/stable/topics/channel_layers.html
