@@ -19,6 +19,8 @@ env = environ.Env(
     EMAIL_COMPLETION_RECEIPTS = (bool, False),
     DEFAULT_FROM_EMAIL = (str,None),
     NUMBAS_LOCKDOWN_APP_PASSWORD = (str, ''),
+    REPORT_SCORE_SUBTRACT_MINUTES = (float, 1),
+    AUTOMATIC_SCORE_REPORT_DELAY_MINUTES = (float, 1),
 )
 
 # Show debug information when there are errors?
@@ -302,3 +304,8 @@ CANVAS_LTI_13_PRESETS = {
     },
 }
 
+# The number of minutes to subtract from submission times reported to the consumer, to avoid slightly passing a deadline.
+REPORT_SCORE_SUBTRACT_MINUTES = env('REPORT_SCORE_SUBTRACT_MINUTES')
+
+# The number of minutes to wait before automatically reporting scores when the due date passes.
+AUTOMATIC_SCORE_REPORT_DELAY_MINUTES = env('AUTOMATIC_SCORE_REPORT_DELAY_MINUTES')
