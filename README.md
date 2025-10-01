@@ -46,7 +46,7 @@ The LTI provider is ready to start.
 Run the following command:
 
 ```
-docker compose up --scale daphne=4 --scale huey=2
+docker compose up --scale daphne=4 --scale huey=1
 ```
 
 You can customise the number of each of the kinds of process by changing the numbers in the `--scale` arguments.
