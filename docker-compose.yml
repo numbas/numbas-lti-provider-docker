@@ -21,14 +21,11 @@ services:
     env_file:
       - 'settings.env'
     environment:
-      PGDATA: /var/lib/postgresql/data
       POSTGRES_DB: numbas_lti
       POSTGRES_USER: numbas_lti
     expose:
       - "5432"
-    image: postgres
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    image: postgres:18
     restart: always 
   numbas-setup:
     env_file:
@@ -70,6 +67,5 @@ services:
       - numbas:/srv
     working_dir: /opt/numbas-lti-provider/
 volumes: 
-  pgdata:
   numbas:
   redis:
