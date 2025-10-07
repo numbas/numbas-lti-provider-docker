@@ -27,6 +27,11 @@ services:
       - "5432"
     image: postgres:18
     restart: always 
+    healthcheck:
+      test: "pg_isready -U postgres"
+      interval: 5s
+      timeout: 5s
+      retries: 5
   numbas-setup:
     env_file:
       - 'settings.env'
