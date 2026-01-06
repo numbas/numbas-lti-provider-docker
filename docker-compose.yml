@@ -28,7 +28,7 @@ services:
     image: postgres:18
     restart: always 
     healthcheck:
-      test: "pg_isready -U postgres"
+      test: "pg_isready -U numbas_lti"
       interval: 5s
       timeout: 5s
       retries: 5
@@ -37,8 +37,11 @@ services:
       - 'settings.env'
     image: numbas/numbas-lti-provider
     depends_on:
-      - postgres
-      - redis
+      postgres:
+          condition: service_healthy
+      redis:
+          condition: service_started
+
     volumes:
       - numbas:/srv
       - ./files/numbas-lti-provider:/setup-files
@@ -49,8 +52,10 @@ services:
     image: numbas/numbas-lti-provider
     command: /usr/local/bin/daphne numbasltiprovider.asgi:application --port 8700 --bind 0.0.0.0 -v 2
     depends_on:
-      - postgres
-      - redis
+      postgres:
+          condition: service_healthy
+      redis:
+          condition: service_started
     expose:
       - "8700"
     restart: always 
@@ -64,8 +69,10 @@ services:
     image: numbas/numbas-lti-provider
     command: /usr/local/bin/python /opt/numbas-lti-provider/manage.py run_huey
     depends_on:
-      - postgres
-      - redis
+      postgres:
+          condition: service_healthy
+      redis:
+          condition: service_started
     restart: always 
     user: www-data
     volumes:
